@@ -4,7 +4,7 @@
    clear-code
 
 : author
-   結城洋志
+   結城洋志 aka Piro
 
 : institution
     株式会社クリアコード
@@ -12,45 +12,62 @@
 : allotted_time
     5m
 
-= 軽く自己紹介
+= シェルコマンド解説漫画
 
   # image
   # src = ./images/systemadmingirl.jpg
-  # relative_width = 30
-  # align = right
-  # relative_margin_right = -10
+  # relative_width = 40
 
-* ((*結城洋志*)) aka ((*Piro*))
-  * Firefox用拡張機能
-    * Tree Style Tabなど
-  * OSS開発に関わる人を\n
-    増やす取り組み「OSS Gate」\n
-    でワークショップ開催
+== プロパティー
+
+: enable-title-on-image
+   false
+
+= Firefoxアドオン\nTree Style Tab
+
+  # image
+  # src = ./images/tst.png
+  # relative_width = 70
+
+== プロパティー
+
+: enable-title-on-image
+   false
 
 = Firefox\nアドオンを\nバニラJSで
 
 = なんでバニラJS？
 
-昔のFirefoxアドオンは\n
-「動的なパッチ」だったから。
+(('wait'))昔のFirefoxアドオンは\n
+「動的なパッチ」だった
 
 * (('wait'))Firefox本体のスクリプトの\n
   名前空間に変数や関数を注入
-* (('wait'))アドオンだけで完結しない
+* (('wait'))静的解析しにくい
 * (('wait'))下手にライブラリーを使うと\n
   名前空間汚染でFirefoxが壊れる
 
-= ニーズに合うライブラリーは自作するしか
+= なぜライブラリー自作？
 
-* (('wait'))アドオンで頻出の処理
-  * 設定読み書き, UIの多言語対応, etc.
+* (('wait'))ニッチすぎて既存の物が無い
   * Firefoxの内部実装に強く依存
-* (('wait'))UI実装
-  * メニュー, ダイアログ, etc.
-  * ネイティブUIとの親和性が欲しいのに\n
-    既製ライブラリーはオレオレUIばかり
+  * 設定読み書き, UIの多言語対応, etc.
+* (('wait'))既製UIライブラリーは\n
+  自我が強すぎる
+  * メニューUIなど
+  * FirefoxのUI＝ネイティブUIに\n
+    馴染むUIウィジェットが欲しい
 
-= 小規模なライブラリーを作る
+= ライブラリーができるまでの流れ
+
+* (('wait'))複数アドオンで共通して\n
+  実現したい機能が出てくる
+* (('wait'))→関数やクラスを\n
+  　単体のファイルに切り出す
+* (('wait'))→README, LICENSEを付けて\n
+  　GitHubで公開
+
+= できるもの
 
 * (('wait'))数十～数百行程度
 * (('wait'))他のライブラリーに非依存
@@ -73,22 +90,42 @@
 
 = そんなライブラリーの使い方
 
-* Gitのサブモジュールとして追加
-  * git submodule add <URL> submodules/<name>
-  * Makefileで\n
-    cp submodules/<mame>/<name>.js extlib/
-  * 場合によってはその後に\n
-    echo 'export default Configs;' >> extlib/Configs.js
-  * .gitignore、.eslintignoreで除外
+* (('wait'))Gitのサブモジュール
+    git submodule add <URL> submodules/<name>
 
-= みなさん\nどうしてますか？
+= ビルド・パッケージング時
+
+* (('wait'))Makefileのmale rule中で\n
+  ファイルをコピーするだけ
+    xpi:
+      cp submodules/webextensions-lib-configs/Configs.js extlib/
+      zip -r -9 treestyletab.xpi manifest.json ... extlib
+* (('wait'))コピー後のファイルは\n
+  .gitignore、.eslintignoreで\n
+  除外
+
+= ライブラリーのロード
+
+* (('wait'))<script src="..."> で\n
+  同じ名前空間にロード
+* (('wait'))ES Modulesのimport
+* (('wait'))コピー後に小加工して
+  両対応
+    xpi:
+      cp submodules/webextensions-lib-configs/Configs.js extlib/
+      echo 'export default Configs;' >> extlib/Configs.js
+      ...
+
+= 何が正解なんだろう？
 
 
-= ちなみに、今のアドオン開発
+= ちなみに、今の\nFirefoxアドオン開発
 
-* WebExtensions
+* Chromiumと同様のモデル\n
+  （WebExtensions）
   * 名前空間が完全に分離された
   * ライブラリも安全に読み込める
   * みんなTypeScriptで書いてる
 
-今さらバニラJSでやる必要は皆無（オチ）
+今さらバニラJSの必要性は皆無\n
+（オチ）
