@@ -4,7 +4,9 @@
    clear-code
 
 : author
-   結城洋志 aka Piro
+   結城洋志 aka Piro\n
+   github.com/piroor\n
+   x.com/piro_or
 
 : institution
     株式会社クリアコード
@@ -81,7 +83,7 @@
   # src = ./images/lifetime.png
   # relative_width = 90
 
-早死にされそうで不安
+(('wait'))早死にされそうで不安
 
 == プロパティー
 
@@ -109,8 +111,7 @@
 * (('wait'))<script src="..."> で\n
   同じ名前空間にロード
 * (('wait'))または、ES Modulesのimport
-* (('wait'))コピー後に小加工して
-  両対応
+* (('wait'))コピー後に小加工して両対応
     xpi:
       cp submodules/webextensions-lib-configs/Configs.js extlib/
       echo 'export default Configs;' >> extlib/Configs.js
