@@ -1,0 +1,24 @@
+---
+id: presentation-vanilla-js-library-topics
+base_name: scenario
+tags:
+- rabbit
+- oss_gate
+- workshop
+presentation_date: 2024-05-24
+version: 2024.5.24.0
+licenses:
+- CC-BY-SA-4.0
+slideshare_id: 
+speaker_deck_id: 
+ustream_id: 
+vimeo_id: 
+youtube_id: 
+source_code_uri: https://gitlab.com/clear-code/presentation-vanilla-js-library-topics
+author:
+  markup_language: :rd
+  name: YUKI Hiroshi
+  email: yuki@clear-code.com
+  rubygems_user: Piro
+  slideshare_user: 
+  speaker_deck_user: 

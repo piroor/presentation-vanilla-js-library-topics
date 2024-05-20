@@ -1,0 +1,44 @@
+= バニラJS開発\nライブラリー事情
+
+: theme
+   clear-code
+
+: author
+   結城洋志
+
+: institution
+    株式会社クリアコード
+
+: allotted_time
+    5m
+
+= 軽く自己紹介
+
+  # image
+  # src = ./images/systemadmingirl.jpg
+  # relative_width = 30
+  # align = right
+  # relative_margin_right = -10
+
+* ((*結城洋志*)) aka ((*Piro*))
+  * Firefox用拡張機能
+    * Tree Style Tabなど
+  * OSS開発に関わる人を\n
+    増やす取り組み「OSS Gate」\n
+    でワークショップ開催
+
+= バニラJSでアドオン開発
+
+
+・数十から数百行程度の規模の小ライブラリーに複雑な依存関係を持たせたくない
+
+・Firefox（とChrome）で使う前提なのでpolyfillは不要
+
+・npm？ bower？ yarn？ vlt？ どれを使えばいいのかで悩みたくない、やることは大して変わらないのにやり方を変えなきゃいけないのだるい
+
+・Gitだからsubmoduleで参照、レガシーだけど基本的に何も準備しなくても使えるMakefile（自分の環境ではGNU Make）で「ビルド」する際にファイルをコピー
+
+・コピー後のものがコミットされないよう.gitignoreで除外、検証も二重にされないよう.eslintignoreで除外
+
+・みんなはどうしてる？
+
