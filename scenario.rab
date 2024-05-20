@@ -116,7 +116,7 @@
       echo 'export default Configs;' >> extlib/Configs.js
       ...
 
-= どうするのが正解だった……？
+= どうする\nのが正解\nなのか？
 
 
 = ちなみに、今の\nFirefoxアドオン開発
