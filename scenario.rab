@@ -27,18 +27,68 @@
     増やす取り組み「OSS Gate」\n
     でワークショップ開催
 
-= バニラJSでアドオン開発
+= Firefox\nアドオンを\nバニラJSで
+
+= なんでバニラJS？
+
+昔のFirefoxアドオンは\n
+「動的なパッチ」だったから。
+
+* (('wait'))Firefox本体のスクリプトの\n
+  名前空間に変数や関数を注入
+* (('wait'))アドオンだけで完結しない
+* (('wait'))下手にライブラリーを使うと\n
+  名前空間汚染でFirefoxが壊れる
+
+= ニーズに合うライブラリーは自作するしか
+
+* (('wait'))アドオンで頻出の処理
+  * 設定読み書き, UIの多言語対応, etc.
+  * Firefoxの内部実装に強く依存
+* (('wait'))UI実装
+  * メニュー, ダイアログ, etc.
+  * ネイティブUIとの親和性が欲しいのに\n
+    既製ライブラリーはオレオレUIばかり
+
+= 小規模なライブラリーを作る
+
+* (('wait'))数十～数百行程度
+* (('wait'))他のライブラリーに非依存
+  * Firefox専用だからpolyfillも不要
+* (('wait'))パッケージマネージャーの\n
+  必要性が薄い
+
+= ていうか……
+
+  # image
+  # src = ./images/lifetime.png
+  # relative_width = 90
+
+早死にされそうで不安
+
+== プロパティー
+
+: enable-title-on-image
+   false
+
+= そんなライブラリーの使い方
+
+* Gitのサブモジュールとして追加
+  * git submodule add <URL> submodules/<name>
+  * Makefileで\n
+    cp submodules/<mame>/<name>.js extlib/
+  * 場合によってはその後に\n
+    echo 'export default Configs;' >> extlib/Configs.js
+  * .gitignore、.eslintignoreで除外
+
+= みなさん\nどうしてますか？
 
 
-・数十から数百行程度の規模の小ライブラリーに複雑な依存関係を持たせたくない
+= ちなみに、今のアドオン開発
 
-・Firefox（とChrome）で使う前提なのでpolyfillは不要
+* WebExtensions
+  * 名前空間が完全に分離された
+  * ライブラリも安全に読み込める
+  * みんなTypeScriptで書いてる
 
-・npm？ bower？ yarn？ vlt？ どれを使えばいいのかで悩みたくない、やることは大して変わらないのにやり方を変えなきゃいけないのだるい
-
-・Gitだからsubmoduleで参照、レガシーだけど基本的に何も準備しなくても使えるMakefile（自分の環境ではGNU Make）で「ビルド」する際にファイルをコピー
-
-・コピー後のものがコミットされないよう.gitignoreで除外、検証も二重にされないよう.eslintignoreで除外
-
-・みんなはどうしてる？
-
+今さらバニラJSでやる必要は皆無（オチ）
