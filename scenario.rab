@@ -12,7 +12,7 @@
 : allotted_time
     5m
 
-= シェルコマンド解説漫画
+= 活動1：シェルコマンド解説漫画
 
   # image
   # src = ./images/systemadmingirl.jpg
@@ -23,7 +23,7 @@
 : enable-title-on-image
    false
 
-= Firefoxアドオン\nTree Style Tab
+= 活動2：Firefoxアドオン\nTree Style Tabなど
 
   # image
   # src = ./images/tst.png
