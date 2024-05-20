@@ -95,7 +95,7 @@
 
 = ビルド・パッケージング時
 
-* (('wait'))Makefileのmale rule中で\n
+* (('wait'))Makefileのmake rule中で\n
   ファイルをコピーするだけ
     xpi:
       cp submodules/webextensions-lib-configs/Configs.js extlib/
@@ -108,7 +108,7 @@
 
 * (('wait'))<script src="..."> で\n
   同じ名前空間にロード
-* (('wait'))ES Modulesのimport
+* (('wait'))または、ES Modulesのimport
 * (('wait'))コピー後に小加工して
   両対応
     xpi:
@@ -116,7 +116,7 @@
       echo 'export default Configs;' >> extlib/Configs.js
       ...
 
-= 何が正解なんだろう？
+= どうするのが正解だった……？
 
 
 = ちなみに、今の\nFirefoxアドオン開発
