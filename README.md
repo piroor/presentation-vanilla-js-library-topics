@@ -13,6 +13,7 @@ CC BY-SA 4.0
 ### 表示
 
 ```console
+% gem install rabbit rabbit-theme-clear-code
 % rake
 ```
 
