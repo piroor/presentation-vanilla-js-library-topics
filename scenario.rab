@@ -49,33 +49,47 @@
 * (('wait'))下手にライブラリーを使うと\n
   名前空間汚染でFirefoxが壊れる
 
-= なぜライブラリー自作？
+= なぜライブラリー自作？(1)
 
-* (('wait'))ニッチすぎて既存の物が無い
-  * Firefoxの内部実装に強く依存
-  * 設定読み書き, UIの多言語対応, etc.
-* (('wait'))既製UIライブラリーは\n
-  自我が強すぎる
-  * メニューUIなど
-  * FirefoxのUI＝ネイティブUIに\n
-    馴染むUIウィジェットが欲しい
+* (('wait'))値の型を自動判別して\n
+  nsIPrefBranchの適切な\n
+  メソッドを呼んで……
+* (('wait'))nsITimerのインスタンス作って\n
+  nsIObserverとして自身を登録し\n
+  指定秒数でコールバックを……
 
-= ライブラリーができるまでの流れ
+(('wait'))ニッチすぎて既存の物が無い
 
-* (('wait'))複数アドオンで共通して\n
-  実現したい機能が出てくる
-* (('wait'))→関数やクラスを\n
-  　単体のファイルに切り出す
-* (('wait'))→README, LICENSEを付けて\n
-  　GitHubで公開
+= なぜ自作？(2-1)
 
-= できるもの
+例：メニューUI
 
-* (('wait'))数十～数百行程度
-* (('wait'))他のライブラリーに非依存
+* (('wait'))キーボードで操作できない（jQueryUI）
+* (('wait'))キーボード操作の動作が怪しい（React MUI）
+    # image
+    # src = ./images/react-mui.png
+    # relative_width = 50
+
+= なぜ自作？(2-2)
+
+* 欲しいのはただ「OSのUIと同じ振る舞いの階層メニューUI」
+  * キーボード操作、階層表示、\n
+    アクセスキー……
+  * XULでは<menu>と書くだけで\n
+    できていたのに……
+* (('wait'))Mozillaの頑張りで目が肥えて\n
+  市井のライブラリーでは\n
+  満足できない体に
+
+= それでライブラリー自作
+
+* (('wait'))わりと小規模
+  * webextensions-lib-configs：619行
+  * webextensions-lib-menu-ui：994行
+* (('wait'))実装は1ファイル完結が多い
+  * 他のライブラリーに非依存
   * Firefox専用だからpolyfillも不要
-* (('wait'))パッケージマネージャーの\n
-  必要性が薄い
+* (('wait'))パッケージマネージャーいる？
 
 = ていうか……
 
@@ -83,7 +97,7 @@
   # src = ./images/lifetime.png
   # relative_width = 90
 
-(('wait'))早死にされそうで不安
+(('wait'))採用しても早死にされそうで不安
 
 == プロパティー
 
@@ -117,7 +131,7 @@
       echo 'export default Configs;' >> extlib/Configs.js
       ...
 
-= どうする\nのが正解\nなのか？
+= どうする\nのが正解\nなんですか？
 
 
 = ちなみに、今の\nFirefoxアドオン開発
